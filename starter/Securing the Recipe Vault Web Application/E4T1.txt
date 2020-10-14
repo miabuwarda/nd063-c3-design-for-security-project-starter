@@ -1,0 +1,15 @@
+
+
+# Identify 2-3 changes that can be made to our environment to prevent an ssh brute force attack from the internet.
+
+To prevent an ssh brute force attack from the internet, the following changes can be made to the environment:
+1.Close the ssh port 22 in the security group "WebAppSG"
+2.Move the "Web Service Instance" to the private subnet "Subnet1" 
+3.Block traffic from any un-identified / un-trusted hosts (not white-listed through the Security Groups or ACLs)
+4.Configure CloudWatch Alarms which can be triggered if EC2s' CloudWatch agents log a stream inside logs_of_ssh where a metric can be configured for failed login attempts. On which a lambda can be triggered to identify and block the attacking IP.
+5.Disable SSH password login on the "Web Service Instance"
+
+# Neither instance should have had access to the secret recipes bucket, in the even that instance API credentials were compromised how could we have prevented access to sensitive data.
+
+Access to sensitive data can best be prevented by the S3 Client-Side Encryption. 
+ 

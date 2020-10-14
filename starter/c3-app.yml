@@ -71,7 +71,7 @@ Resources:
     Type: AWS::EC2::Instance
     Properties:
       ImageId: !Ref AmiIdRecipeWebServiceInstance
-      InstanceType: t3.micro
+      InstanceType: t2.micro
       KeyName: !Ref KeyPair
       SecurityGroupIds:
       - !GetAtt WebAppSG.GroupId
@@ -167,7 +167,7 @@ Resources:
     Type: AWS::EC2::Instance
     Properties:
       ImageId: !Ref AmiIdAttackInstance
-      InstanceType: t3.micro
+      InstanceType: t2.micro
       KeyName: !Ref KeyPair
       IamInstanceProfile: !Ref InstanceProfileRole
       SecurityGroupIds:

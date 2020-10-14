@@ -1,0 +1,26 @@
+# Identify tools that will allow you to do the following:
+
+## Scan infrastructure as code templates
+AWS CloudFormation Guard and AWS Security Hub
+
+### Example vulnerability
+For example,S3 storage buckets defined in templates were publicly exposed.
+
+
+##Scan AMI’s or containers for OS vulnerabilities
+Amazon Inspector
+Automatically assesses applications for exposure, vulnerabilities, and deviations from best practices. 
+
+### Example vulnerability
+Unintended network accessibility of your Amazon EC2 instances and for vulnerabilities on those EC2 instances. 
+
+
+
+
+##Scan an AWS environment for cloud configuration vulnerabilities
+AWS Config
+
+It is assessing, evaluating, recording, auditing configurations of the resources in an AWS environment. It provides security analysis, compliance auditing, operational troubleshooting, and change management.
+
+### Example vulnerability
+For example, the AWS Management Console for AWS Config can be used for detecting security group “Production-DB” was incorrectly configured in the past, and identify which user misconfigured this “Production-DB” security group. This is with the help of CloudTrail.

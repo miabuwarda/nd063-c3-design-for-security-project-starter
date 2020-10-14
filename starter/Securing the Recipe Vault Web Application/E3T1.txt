@@ -1,0 +1,16 @@
+# Describe GuardDuty findings that were detected related to the brute force attack
+
+i-0b96e63b80789d098, the attack EC2 instance, is performing SSH brute force attacks against 10.192.10.53, the web application EC2 instance. Brute force attacks are used to gain unauthorized access to your instance by guessing the SSH password.
+
+# Research the AWS Guard Duty documentation page and explain how GuardDuty may have detected this attack - i.e. what was its source of information.
+
+AWS GuardDuty is Threat Detection service that continuously monitors for malicious or unauthorized behaviour to protect AWS Accounts, workloads, and S3 data. In this scenario, we enabled GuardDuty, which in consequence makes it monitors my AWS accounts. It automatically analyze network, account, and data access activities at scale. This is using the following information sources:
+- CloudTrail Management Events
+- CloudTrail S3 data Events
+- VPC Flow logs
+- DNS logs
+
+GuardDuty uses a ML, anomaly detection, and integrated threat intelligence to identify and prioritize potential threats.
+
+In this attached, a threat list had been created when enabled the GuardDuty. The attacking instance made API calls which are logged in CloudTrail.
+As GuardDuty is continuously monitoring the CloudTrail Logs and analyzes them based on the threat list. GuardDuty has generated the finding and sent them to the GuardDuty console for our view.

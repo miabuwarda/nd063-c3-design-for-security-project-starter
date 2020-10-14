@@ -1,0 +1,17 @@
+
+# What additional architectural change can be made to reduce the internet facing attack surface of the web application instance.
+1. Setting up HTTP-to-HTTPS redirect for the Application load balancer. This is to redirect all requests from port 80 to port 443. This is to redirect HTTP traffic to HTTPS.
+2. The EC2 web application instance's metadata version should be configured with Instance Metadata Service Version 2 (IMDSv2). The IMDS provides access to temporary, frequently rotated credentials, which can eliminate the need to hard-code or distribute credentials manually or programmatically. 
+3. Move the web application instance into the private subnet 1 and disallow users to log in with root credentials over SSH. SSM can be used when there is a critical need to access the instance. However it is better security to avoid any access to this instance, except from the ALB.
+
+# Assuming the IAM permissions for the S3 bucket are still insecure, would creating VPC private endpoints for S3 prevent the unauthorized access to the secrets bucket.
+Yes. It allows access the S3 bucket privately without using IAM authentication.It would be accessed from within the Amazon VPC through the endpoint of the S3 secrets bucket.
+The bucket policy would need to be configured to allow access from the VPC endpoint, and to deny all access from outside this endpoint. By this way any unauthorized access can be prevented. 
+
+# Will applying default encryption setting to the s3 buckets encrypt the data that already exists?
+No. The existing data will not be encrypted when encryption is enabled. It can be encrypted by download/get and upload/put again. 
+
+# What would happen if the original cloud formation templates are applied to this environment.
+Some of them can be updated, and some will be reset to the original templates. A proposed stack in the CloudFormation may impact running instances. This can be previewed at the preview section, where a "True" in the "Replacement" column would indicate that a resource replacement with a new one.
+
+

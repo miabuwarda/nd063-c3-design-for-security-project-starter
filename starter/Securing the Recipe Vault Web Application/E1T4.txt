@@ -1,0 +1,11 @@
+Based on the architecture diagram, and the steps you have taken so far to upload data and access the application web service, identify at least 2 obvious poor practices as it relates to security.  Include justification.
+
+# Poor practice 1:
+The Security group “WebAppSG” exposes ingress a non-web ports, ssh port 22 and port 5000, globally
+Justification:
+This is because the attackers will attempt to target public facing infrastructure. Therefore isolation of the ALB from other web application service may be suggested. This is by moving this web application service into the private subnet. Exposing these instances to the internet should be avoided, limited, and restricted.
+
+# Poor practice 2:
+The S3 bucket encryption is not enabled for both “S3BucketRecipesFree” and “S3BucketRecipesSecret”.
+Justification:
+This is because the S3 security best practices are recommending that s3 bucket policies to enforce object encryption.

@@ -1,0 +1,35 @@
+My recommendations on how to remediate the vulnerabilities are as following:
+
+1.	Move the Web Service Instance into the "Private Subnet 1" and block any access to this instance from the internet, except from the ALB. Additionally a NAT can be created in the "Trusted Public Internet 1" to allow secure access to this instance for internet. This is for patching or any critical internet access. Other than this NAT, all exposure to the internet should be blocked. Same should be applied to the other instance "Attack Simulation Instance". No instance should remain insecure in all subnets.
+2.	Hardening the instance security by configuring the instances with Instance Metadata Service Version 2 (IMDSv2). So that the HttpTokens is set to required. This should be applied to the two instances.
+3.	EBS encryption should be enabled by default. The EBS volumes that are being attached to the EC2 instances should be encrypted.
+4.	configure redirection from HTTP to HTTPS on all HTTP listeners of ALB. This is because there is an HTTP listener of ALB do not have HTTP to HTTPS redirection configured.
+5.	Ensure no security groups allow ingress from 0.0.0.0/0 to port 22	
+6.	Ensure no security groups allow ingress from 0.0.0.0/0 to port 3389	
+7.	Ensure the default security group of every VPC restricts all traffic	
+8.	Ensure multi-factor authentication (MFA) is enabled for all IAM users that have a console password	
+9.	Ensure VPC flow logging is enabled in all VPCs	
+10.	Ensure IAM password policy requires minimum password length of 14 or greater	
+11.	Ensure IAM policies are attached only to groups or roles	
+12.	Ensure IAM password policy prevents password reuse	
+13.	Ensure IAM password policy expires passwords within 90 days or less	
+14.	Ensure CloudTrail is enabled in all regions	
+15.	Ensure CloudTrail logs are encrypted at rest using KMS CMKs	
+16.	Ensure CloudTrail trails are integrated with CloudWatch Logs	
+17.	Ensure a log metric filter and alarm exist for unauthorized API calls	
+18.	Ensure a log metric filter and alarm exist for Management Console sign-in without MFA	
+19.	Ensure a log metric filter and alarm exist for usage of "root" account	
+20.	Ensure a log metric filter and alarm exist for IAM policy changes	
+21.	Ensure a log metric filter and alarm exist for CloudTrail configuration changes	
+22.	Ensure a log metric filter and alarm exist for AWS Management Console authentication failures	
+23.	Ensure a log metric filter and alarm exist for disabling or scheduled deletion of customer created CMKs	
+24.	Ensure a log metric filter and alarm exist for S3 bucket policy changes	
+25.	Ensure a log metric filter and alarm exist for AWS Config configuration changes	
+26.	Ensure a log metric filter and alarm exist for security group changes	
+27.	Ensure a log metric filter and alarm exist for changes to Network Access Control Lists (NACL)	
+28.	Ensure a log metric filter and alarm exist for changes to network gateways	
+29.	Ensure a log metric filter and alarm exist for route table changes	
+30.	Ensure a log metric filter and alarm exist for VPC changes	
+31.	Ensure a support role has been created to manage incidents with AWS Support	
+32.	Ensure the S3 bucket used to store CloudTrail logs is not publicly accessible	
+33.	Ensure S3 bucket access logging is enabled on the CloudTrail S3 bucket
